@@ -1,0 +1,17 @@
+#!/usr/bin/env node
+
+'use strict';
+
+const fs = require('fs');
+const path = process.argv[2];
+const sum = (a,b) => a += Number(b);
+
+fs.readFile(path,'utf-8',(err,file) => {
+	if (!err) {
+		let total = file.split("\n").reduce(sum,0);
+		console.log("Media "+ total/1000);
+	}
+});
+
+
+
