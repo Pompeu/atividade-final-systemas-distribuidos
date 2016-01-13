@@ -15,7 +15,7 @@ public class Statics {
 		final String fileName = args[0];
 		final Stream<String> stream = Files.lines(Paths.get(fileName));
 		List<Integer> list = stream.map(Integer::parseInt).collect(Collectors.toList());
-
+		//todo gerar json das estaticas
 		println(statics(list));
 		println(median(list));
 		println(desvioPadrao(list));
