@@ -12,6 +12,3 @@ fs.readFile(path,'utf-8',(err,file) => {
 		console.log("Media "+ total/1000);
 	}
 });
-
-
-

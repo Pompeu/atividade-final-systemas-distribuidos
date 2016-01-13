@@ -1,11 +1,7 @@
-package server.teste;
-
-
 public class Main {
-	
-	
+
 	public static void main(String[] args) throws Exception {
-		
+
 		Thread server = new Thread(() -> {
 			try {
 				Server.main();
@@ -13,7 +9,7 @@ public class Main {
 				e.printStackTrace();
 			}
 		});
-		
+
 		Thread cliente = new Thread(() -> {
 			try {
 				Cliente.main();
@@ -21,11 +17,11 @@ public class Main {
 				e.printStackTrace();
 			}
 		});
-		
+
 		server.start();
 		cliente.start();
 
 	}
-	
-	
-}
+
+
+}	
