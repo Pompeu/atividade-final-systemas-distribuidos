@@ -9,8 +9,8 @@ import java.util.Arrays;
 
 public class Cliente {
 
-	public static void main() throws Exception {
-		
+	public static final void main() throws Exception {
+
 		Socket socket = new Socket("localhost", 3000);
 
 		InputStream input = socket.getInputStream();
@@ -24,22 +24,23 @@ public class Cliente {
 			long init = System.currentTimeMillis();
 			String msg = Arrays.toString(getVector());
 
-			if (i == 1) {
+			if (i > 0) {
 				out.println("Fim");
 				break;
 			}
-			i++;
 
+			++i;
 			out.println(msg);
+
 
 			if ("Fim".equals(msg)) {
 				break;
 			}
 
 			msg = in.readLine();
-	
+
 			System.out.println(System.currentTimeMillis() - init);
-			
+
 		}
 
 		in.close();
@@ -49,7 +50,7 @@ public class Cliente {
 	}
 
 	public static int[] getVector() {
-		int[] ints = new int[10001];
+		int[] ints = new int[10000];
 		for (int i = 0; i < ints.length; i++) {
 			ints[i] = (int) (Math.random() * 10001);
 		}

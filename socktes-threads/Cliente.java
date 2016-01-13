@@ -27,7 +27,7 @@ public class Cliente {
 			if (i > 0) {
 				out.println("Fim");
 				break;
-			} else {
+			}else { 
 				++i;
 				out.println(msg);
 			}

@@ -1,6 +1,7 @@
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Cliente {
@@ -12,9 +13,9 @@ public class Cliente {
 		long init = System.currentTimeMillis();
 		try {
 			Registry registry = LocateRegistry.getRegistry(1099);
-			Hello stub = (Hello) registry.lookup("H");
+			Servico stub = (Servico) registry.lookup("H");
 
-			int size = stub.message(getVector()).size();
+			int[] list = stub.message(getVector());
 			System.out.println(System.currentTimeMillis() - init);
 
 		} catch (Exception e) {
@@ -23,10 +24,10 @@ public class Cliente {
 		}
 	}
 
-	static List<Integer> getVector() {
-		List<Integer> ints = new ArrayList<>();
+	final static int[] getVector() {
+		int[] ints = new int[10000];
 		for (int i = 0; i < 10000; i++) {
-			ints.add((int) (Math.random() * 10001));
+			ints[i] = (int) (Math.random() * 10001);
 		}
 		return ints;
 	}

@@ -9,22 +9,21 @@ import javax.naming.Context;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HelloClient {
+public class Client {
 
 	public static void  main( String args[] ) {
 		Context ic;
 		Object objref;
-		HelloInterface hi;
-		long init = System.currentTimeMillis();
+		Servico servico;
+		final long init = System.currentTimeMillis();
 
 		try {
 			ic = new InitialContext();
 
-			objref = ic.lookup("HelloService");
+			objref = ic.lookup("Service");
 
-			hi = (HelloInterface) PortableRemoteObject.narrow(
-					objref, HelloInterface.class);
-			hi.message(getVector());
+			servico = (Servico) PortableRemoteObject.narrow(objref, Servico.class);
+			servico.message(getVector());
 			System.out.println(System.currentTimeMillis() - init);
 		} catch( Exception e ) {
 			System.err.println( "Exception " + e + "Caught" );
@@ -33,10 +32,10 @@ public class HelloClient {
 		}
 	}
 
-	static List<Integer> getVector() {
-		List<Integer> ints = new ArrayList<>();
+	static final int[] getVector() {
+		int[] ints = new int[10000];
 		for (int i = 0; i < 10000; i++) {
-			ints.add((int) (Math.random() * 10000));
+			ints[i] = (int) (Math.random() * 10000);
 		}
 		return ints;
 	}

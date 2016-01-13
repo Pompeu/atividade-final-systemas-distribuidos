@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 
 public class Server {
 
-	public static void main() throws Exception {
+	public static final void main() throws Exception {
 
 		ServerSocket server = new ServerSocket(3000);
 
@@ -38,7 +38,6 @@ public class Server {
 		out.close();
 		socket.close();
 		server.close();
-
 	}
 
 	private static List<Integer> getList(String msg) {
@@ -46,9 +45,10 @@ public class Server {
 		msg = msg.replace("]", "");
 		msg = msg.replace("[", "");
 		String[] arr = msg.split(",");
+		int len = arr.length;
 
 		List<Integer> intes = new ArrayList<>();
-		for (int i = 0; i < arr.length; i++) {
+		for (int i = 0; i < len; i++) {
 			intes.add(Integer.parseInt(arr[i].trim()));
 		}
 

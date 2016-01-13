@@ -4,7 +4,6 @@
 
 ```sh
 rmiregistry
-start rmiregistry 
 ```
 
 ## Segundo passo

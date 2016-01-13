@@ -2,7 +2,7 @@
 
 i=0
 
-while [[ i -lt 500 ]]; do
+while [[ i -lt 250 ]]; do
 	top -b -n1 | grep -e Mem: | awk '{print $5}'
 	sleep 1
 	i=$[$i+1]

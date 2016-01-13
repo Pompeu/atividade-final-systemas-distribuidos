@@ -3,38 +3,41 @@
 ## first 
 Compile HelloImpl source.
 ```sh
-javac -d . -classpath . HelloImpl.java
+javac -d . -classpath . ServicoImpl.java
 ```
 ## second
 
 now use the rmic for make stubs
 
 ```sh
-rmic -iiop HelloImpl.java
+rmic -iiop ServicoImpl
 ```
 
 ## Third
-Compile outher sources.
-```jsh
-javac -d . -classpath . HelloInterface.java HelloServer.java HelloClient.java
+Compile outhers sources.
 
+```sh
+javac -d . -classpath . Client.java Server.class Servico.class
 ```
 
 # For run 
 
 ## Up RMI service
 
-```
-sh orb.sh
+```sh
+./orb.sh &
 ```
 
 ## Run RMI Server
-```
-sh server.sh
+```sh
+./server.sh &
 ```
 ## Run Cliente server
+```sh
+./cliente.sh &
 ```
-sh cliente.sh
+## Run requests
+```sh
+./make-requiests.sh &
 ```
-
 
