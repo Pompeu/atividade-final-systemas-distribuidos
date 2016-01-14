@@ -7,8 +7,10 @@ import java.math.RoundingMode;
 public final class StaticWrapInt {
 	private final List<Integer> list;
 	private final IntSummaryStatistics sumary;
+	private final String fileName;
 
-	public StaticWrapInt (List<Integer> list) {
+	public StaticWrapInt (String fileName ,List<Integer> list) {
+		this.fileName = fileName.split("/")[2].toUpperCase();
 		this.list = list;
 		sumary = list.stream().mapToInt(n -> n).summaryStatistics();
 	}
@@ -40,8 +42,11 @@ public final class StaticWrapInt {
 
 	@Override
 	public String toString() {
-		return new StringBuilder().append("{\"media\":\"")
-			.append(sumary.getAverage()).append("\",\n")
+		return new StringBuilder()
+			.append("{\"title\":\"")
+			.append(this.fileName).append("\",\n")
+			.append("\"media\":\"")
+			.append(scaleToTwo(sumary.getAverage())).append("\",\n")
 			.append("\"mediana\":\"").append(this.getMedian())
 			.append("\",\n").append("\"desvio\":\"")
 			.append(this.getDesvioPadrao()).append("\",\n")
@@ -51,4 +56,5 @@ public final class StaticWrapInt {
 			.append("\",\n").append("\"total\":\"").append(sumary.getSum())
 			.append("\"}").toString();
 	}
+
 }

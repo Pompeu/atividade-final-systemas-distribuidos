@@ -7,8 +7,10 @@ import java.math.RoundingMode;
 public final class StaticWrapDouble {
 	private final List<Double> list;
 	private final DoubleSummaryStatistics sumary;
+	private final String fileName;
 
-	public StaticWrapDouble (List<Double> list) {
+	public StaticWrapDouble (String fileName ,List<Double> list) {
+		this.fileName = fileName.split("/")[2].toUpperCase();
 		this.list = list;
 		sumary = list.stream().mapToDouble(n -> n).summaryStatistics();
 	}
@@ -40,8 +42,11 @@ public final class StaticWrapDouble {
 
 	@Override
 	public String toString() {
-		return new StringBuilder().append("{\"media\":\"")
-			.append(sumary.getAverage()).append("\",\n")
+		return new StringBuilder()
+			.append("{\"title\":\"")
+			.append(this.fileName).append("\",\n")
+			.append("{\"media\":\"")
+			.append(scaleToTwo(sumary.getAverage())).append("\",\n")
 			.append("\"mediana\":\"").append(this.getMedian())
 			.append("\",\n").append("\"desvio\":\"")
 			.append(this.getDesvioPadrao()).append("\",\n")
@@ -49,6 +54,6 @@ public final class StaticWrapDouble {
 			.append("\"min\":\"").append(sumary.getMin()).append("\",\n")
 			.append("\"quantidade\":\"").append(sumary.getCount())
 			.append("\",\n").append("\"total\":\"").append(sumary.getSum())
-			.append("\"}").toString();
+			.append("\"}}").toString();
 	}
 }

@@ -15,12 +15,12 @@ public class Parser {
 			List<Double> list = stream
 				.map(Double::parseDouble)
 				.collect(Collectors.toList());
-			println(new StaticWrapDouble(list));
+			println(new StaticWrapDouble(fileName,list));
 		} else {
 			List<Integer> list = stream
 				.map(Integer::parseInt)
 				.collect(Collectors.toList());
-			println(new StaticWrapInt(list));
+			println(new StaticWrapInt(fileName,list));
 		}
 
 		stream.close();
