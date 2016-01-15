@@ -1,8 +1,12 @@
+package org.pompeu.wraps;
 
 import java.util.DoubleSummaryStatistics;
 import java.util.List;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.math.RoundingMode;
+
+import com.google.gson.Gson;
 
 public final class StaticWrap {
 	private final List<Number> list;
@@ -10,7 +14,7 @@ public final class StaticWrap {
 	private final String fileName;
 
 	public StaticWrap (String fileName ,List<Number> list) {
-		this.fileName = fileName.split("/")[2].toLowerCase();
+		this.fileName = fileName.toLowerCase();
 		this.list = list;
 		sumary = list.stream().mapToDouble(n -> n.doubleValue()).summaryStatistics();
 	}
@@ -47,21 +51,22 @@ public final class StaticWrap {
 
 	@Override
 	public String toString() {
-		return new StringBuilder()
-			.append("{\"title\":\"")
+		//return  new Gson().toJson(this);
+		return new StringBuffer()
+			.append("{\n\t\"title\":\"")
 			.append(this.fileName).append("\",\n")
-			.append("\"media\":\"")
+			.append("\t\"media\":\"")
 			.append(scaleToTwo(sumary.getAverage())).append("\",\n")
-			.append("\"variancia\":\"")
+			.append("\t\"variancia\":\"")
 			.append(scaleToTwo(this.getVariance())).append("\",\n")
-			.append("\"mediana\":\"").append(this.getMedian())
-			.append("\",\n").append("\"desvio\":\"")
+			.append("\t\"mediana\":\"").append(this.getMedian())
+			.append("\",\n").append("\t\"desvio\":\"")
 			.append(this.getDesvioPadrao()).append("\",\n")
-			.append("\"max\":\"").append(sumary.getMax()).append("\",\n")
-			.append("\"min\":\"").append(sumary.getMin()).append("\",\n")
-			.append("\"quantidade\":\"").append(sumary.getCount())
-			.append("\",\n").append("\"total\":\"").append(sumary.getSum())
-			.append("\"}").toString();
+			.append("\t\"max\":\"").append(sumary.getMax()).append("\",\n")
+			.append("\t\"min\":\"").append(sumary.getMin()).append("\",\n")
+			.append("\t\"quantidade\":\"").append(sumary.getCount())
+			.append("\",\n").append("\t\"total\":\"").append(sumary.getSum())
+			.append("\"\n}").toString();
 	}
 
 }

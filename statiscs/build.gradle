@@ -1,0 +1,20 @@
+repositories {
+	mavenCentral()
+}
+
+apply plugin: "java"
+
+dependencies {
+	compile "com.google.code.gson:gson:2.5"
+}
+
+sourceSets {
+	main.java.srcDir "src/main"
+	test.java.srcDir "src/test"
+}
+
+jar {
+	from configurations.compile.collect {	zipTree it }
+	manifest.attributes "Main-Class": "org.pompeu.Parser"	
+}
+
