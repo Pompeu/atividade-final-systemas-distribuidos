@@ -1,7 +1,9 @@
-{"media":"6.55",
+{"title":"rmi-cpu",
+"media":"6.55",
+"variancia":"1.03",
 "mediana":"7.0",
-"desvio":"1.15",
-"max":"7.6"
-"min":"4.5"
+"desvio":"1.01",
+"max":"7.6",
+"min":"4.5",
 "quantidade":"250",
 "total":"1635.6"}
