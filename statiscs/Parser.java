@@ -11,17 +11,11 @@ public class Parser {
 		final String fileName = args[0];
 		final Stream<String> stream = Files.lines(Paths.get(fileName));
 
-		if (fileName.contains("cpu")) {
-			List<Double> list = stream
-				.map(Double::parseDouble)
-				.collect(Collectors.toList());
-			println(new StaticWrapDouble(fileName,list));
-		} else {
-			List<Integer> list = stream
-				.map(Integer::parseInt)
-				.collect(Collectors.toList());
-			println(new StaticWrapInt(fileName,list));
-		}
+		List<Number> list = stream
+			.map(Double::parseDouble)
+			.collect(Collectors.toList());
+
+		println(new StaticWrapInt(fileName,list));
 
 		stream.close();
 	}
